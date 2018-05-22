@@ -7,7 +7,7 @@ Steps to get API server up and running with OpenTable data
 Fetch code via git:
 
 ```
-git clone git@github.com:sosedoff/opentable.git
+git clone git@github.com:veeya/opentable.git
 ```
 
 Install all dependencies:
@@ -55,9 +55,9 @@ production:
 Edit `config/opentable.yml` file with your credentials that you get from OpenTable representative:
 
 ```
-:host: "HOST"
-:user: "USER"
-:password: "PASSWORD"
+:env: "QA" || "PROD"
+:client_id: "YOUR_CLIENT_ID"
+:secret: "YOUR_SECRET"
 ```
 
 ## Import data
@@ -65,21 +65,7 @@ Edit `config/opentable.yml` file with your credentials that you get from OpenTab
 There are few rake tasks to operate with data:
 
 ```
-rake opentable:download  # Download data snapshot
-rake opentable:flush     # Flush all OpenTable data
-rake opentable:import    # Import and update a fresh OpenTable data
-rake opentable:stats     # Show OpenTable data stats
+rake opentable:refresh_restaurants	# Download data snapshot
+rake opentable:flush     			# Flush all OpenTable data
 ```
 
-You'll need to download OpenTable data snapshot first:
-
-```
-rake opentable:download
-```
-
-And import data:
-
-```
-rake opentable:flush
-rake opentable:import
-```

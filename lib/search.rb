@@ -2,11 +2,11 @@ class SearchError < StandardError ; end
 
 class Search
   FILTER_PARAMS = [
-    "name", "address", "city", "state", "zip", "country"
+    "name", "address", "city", "state", "zip", "country", "phone"
   ]
 
   attr_reader :params
-  attr_reader :name, :address, :city, :state, :zip
+  attr_reader :name, :address, :city, :state, :zip, :phone
   attr_reader :page, :per_page
 
   def initialize(params = {})
@@ -39,6 +39,7 @@ class Search
     init_filter(:address)
     init_filter(:city)
     init_filter(:zip, false)
+    init_filter(:phone)
   end
 
   def validate_filters
@@ -48,10 +49,6 @@ class Search
 
     if params[:country].present?
       @country = params[:country].to_s.upcase
-
-      unless Restaurant.valid_country?(@country)
-        raise SearchError, "Invalid country. Use one of: #{Restaurant::COUNTRIES.join(', ')}"
-      end
     end
   end
 
@@ -84,7 +81,8 @@ class Search
       city:        @city,
       state:       @state,
       postal_code: @zip,
-      country:     @country
+      country:     @country,
+      phone:       @phone
     }.select { |_,v| v.present? }
   end
 

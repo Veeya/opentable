@@ -1,24 +1,16 @@
 # OpenTable API
 
 This project provides an unofficial json API interface to search OpenTable
-restaurant data. It eliminates the need to download, parse and import
-data from XLS file. Its an open-source project, hosted on [Github](https://github.com/sosedoff/opentable).
-
-**Status: Project and API data are no longer maintained.**
+restaurant data. It's an open-source project, hosted on [Github](https://github.com/veeya/opentable).
+It is an updated fork of https://github.com/sosedoff/opentable
 
 ## Overview
 
-- API endpoint: [http://opentable.herokuapp.com/api](http://opentable.herokuapp.com/api)
-- Secure API endpoint: [https://opentable.herokuapp.com/api](https://opentable.herokuapp.com/api)
+- API endpoint: [http://opentable-veeya.herokuapp.com/api](http://opentable-veeya.herokuapp.com/api)
+- Secure API endpoint: [https://opentable-veeya.herokuapp.com/api](https://opentable-veeya.herokuapp.com/api)
 - Response Format: JSON (JSONP is supported too)
 - No authentication or API tokens required
 - API is throttled with 1000 requests per hour per IP address
-
-## Project Status
-
-- [![Build Status](http://img.shields.io/travis/sosedoff/opentable.svg?style=flat)](https://travis-ci.org/sosedoff/opentable)
-- [![Code Climate](http://img.shields.io/codeclimate/github/sosedoff/opentable.svg?style=flat)](https://codeclimate.com/github/sosedoff/opentable)
-- [![Coverage Status](https://img.shields.io/coveralls/sosedoff/opentable.svg?style=flat)](https://coveralls.io/r/sosedoff/opentable?branch=master)
 
 ## API Reference
 
@@ -162,19 +154,8 @@ api.restaurant(81169)
 
 ## Disclaimer
 
-- This service IS NOT affiliated with OpenTable Inc., any of its products or
-employees. 
-- All content is represented as is and does not have any modifications
-to the original data
-
-## Contact
-
-- Dan Sosedoff
-- [dan.sosedoff@gmail.com](mailto:dan.sosedoff@gmail.com)
-- [http://twitter.com/sosedoff](http://twitter.com/sosedoff)
-- [https://github.com/sosedoff/opentable](https://github.com/sosedoff/opentable)
-
-Please **DO NOT** contact author about services and products not related to this project.
+- This service IS NOT affiliated with OpenTable Inc., any of its products or employees. 
+- All content is represented as is and does not have any modifications to the original data
 
 ## License
 

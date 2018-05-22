@@ -7,7 +7,7 @@ class RestaurantSerializer
 
   def to_hash
     {
-      "id"                 => record.restaurant_id,
+      "id"                 => record.rid,
       "name"               => record.name,
       "address"            => record.address,
       "city"               => record.city,
@@ -28,14 +28,14 @@ class RestaurantSerializer
   private
 
   def reserve_url
-    "http://www.opentable.com/single.aspx?rid=#{record.restaurant_id}"
+    "http://www.opentable.com/single.aspx?rid=#{record.rid}"
   end
 
   def mobile_reserve_url
-    "http://mobile.opentable.com/opentable/?restId=#{record.restaurant_id}"
+    "http://mobile.opentable.com/opentable/?restId=#{record.rid}"
   end
 
   def image_url
-    "https://www.opentable.com/img/restimages/#{record.restaurant_id}.jpg"
+    "https://www.opentable.com/img/restimages/#{record.rid}.jpg"
   end
 end

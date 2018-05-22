@@ -22,12 +22,48 @@ namespace :opentable do
   task :flush => :environment do 
     Restaurant.delete_all
   end
+  
+  desc "Refresh Restaurants"
+  task :refresh_restaurants => :environment do
+	require 'rest-client'
+	require 'base64'
+	require 'yaml'
+	require 'erb'
 
-  desc "Import and update a fresh OpenTable data"
-  task :import => :environment do
-    parser  = OpenTable::Parser.new(ENV["CSV_FILE"])
+	opentable_config = YAML.load(ERB.new(File.read("./config/opentable.yml")).result)
+	client_credentials = Base64.encode64(opentable_config['client_id'] + ':' + opentable_config['secret'])	
+	auth_server = 'oauth-pp.opentable.com'
+	endpoint_server = 'platform.otqa.com'
+	if (opentable_config['env'] == 'PROD')
+		auth_server = 'oauth.opentable.com'
+		endpoint_server = 'platform.opentable.com'
+	end
+
+	auth_response = RestClient.get('https://' + auth_server + '/api/v2/oauth/token?grant_type=client_credentials', headers={'Authorization':'Basic ' + client_credentials})
+	token = JSON.parse(auth_response)['access_token']
+
+	offset = 0
+	total_items = 1000000000
+	items = []
+
+	while offset < total_items do
+		offset = items.count
+		if total_items == 1000000000
+			puts 'Fetching Initial Items'
+		else
+			puts 'Fetching Items ' + items.count.to_s + '/' + total_items.to_s
+		end
+		results_response = RestClient.get('https://' + endpoint_server + '/sync/directory?offset=' + offset.to_s, headers={'Authorization':'bearer ' + token})
+		results = JSON.parse(results_response)
+		total_items = results['total_items'].to_i
+		items.push(*results['items'])
+	end
+	
+	puts 'Final Items=' + items.count.to_s
     Restaurant.delete_all
-    records = Restaurant.import_records(parser.parse)
+	records = Restaurant.import_records(items)	
+	puts 'Restaurant count=' + Restaurant.count.to_s
+	puts 'OpenTable Restaurants Refreshed Successfully'
   end
 end
 
