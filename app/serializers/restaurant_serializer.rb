@@ -20,11 +20,11 @@ class RestaurantSerializer
       "lat"                    => record.latitude,
       "lng"                    => record.longitude,
       "price_quartile"         => record.price_quartile,
-      "reservation_url"        => reservation_url,
-      "profile_url"            => profile_url,
-      "is_restaurant_in_group" => is_restaurant_in_group,
-      "aggregate_score"        => aggregate_score,
-      "review_count"           => review_count,
+      "reservation_url"        => record.reservation_url,
+      "profile_url"            => record.profile_url,
+      "is_restaurant_in_group" => record.is_restaurant_in_group,
+      "aggregate_score"        => record.aggregate_score,
+      "review_count"           => record.review_count,
       "image_url"              => image_url
     }
   end
