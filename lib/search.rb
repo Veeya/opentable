@@ -38,7 +38,7 @@ class Search
     init_filter(:name)
     init_filter(:address)
     init_filter(:city)
-    init_filter(:zip, false)
+    init_filter(:postal_code)
     init_filter(:phone)
   end
 
@@ -49,6 +49,10 @@ class Search
 
     if params[:country].present?
       @country = params[:country].to_s.upcase
+    end
+
+    if params[:postal_code].present?
+      @postal_code = params[:postal_code].to_s.upcase
     end
   end
 
@@ -80,7 +84,7 @@ class Search
       address:     @address,
       city:        @city,
       state:       @state,
-      postal_code: @zip,
+      postal_code: @postal_code,
       country:     @country,
       phone:       @phone
     }.select { |_,v| v.present? }
