@@ -6,8 +6,7 @@ It is an updated fork of https://github.com/sosedoff/opentable
 
 ## Overview
 
-- API endpoint: [http://opentable-veeya.herokuapp.com/api](http://opentable-veeya.herokuapp.com/api)
-- Secure API endpoint: [https://opentable-veeya.herokuapp.com/api](https://opentable-veeya.herokuapp.com/api)
+- Secure API endpoint: [https://opentable.veeya.me/api](https://opentable.veeya.me/api)
 - Response Format: JSON (JSONP is supported too)
 - No authentication or API tokens required
 - API is throttled with 1000 requests per hour per IP address
@@ -57,12 +56,11 @@ GET /api/restaurants
 
 Parameters: (at least one required)
 
-- `price` - Price range for the restaurant. Values: 1-4.
 - `name` - Name of the restaurant
 - `address` - Address line. Should not contain state or city or zip.
 - `state` - State code (ex.: IL)
 - `city` - City name (ex.: Chicago)
-- `zip` - Zipcode (ex: 60601)
+- `postal_code` - Postal code (ex: 60601)
 - `country` - Country code (ex: US)
 - `page` -  Page (default: 1) 
 - `per_page` - Entries per Page, can be one of [5, 10, 15, 25, 50, 100] (default: 25)
@@ -132,25 +130,6 @@ Restaurant attributes:
 
 To generate a proper reservation link just ref parameter with your affiliate ID to reserve_url or mobile_reserve_url
 
-## Consuming API
-
-You can use simple client library i wrote — [https://gist.github.com/2504683](https://gist.github.com/2504683)
-
-Example:
-
-```ruby
-api = OpenTable::Client.new
-
-# Find restaurants
-resp = api.restaurants(:city => "Chicago")
-
-# Process response
-resp['count']       # => records found
-resp['restaurants'] # => restaurant records
-
-# Fetch a single record
-api.restaurant(81169)
-```
 
 ## Disclaimer
 
