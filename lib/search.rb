@@ -2,11 +2,11 @@ class SearchError < StandardError ; end
 
 class Search
   FILTER_PARAMS = [
-    "name", "address", "city", "state", "zip", "country", "phone"
+    "name", "address", "city", "state", "postal_code", "country", "phone"
   ]
 
   attr_reader :params
-  attr_reader :name, :address, :city, :state, :zip, :phone
+  attr_reader :name, :address, :city, :state, :postal_code, :phone
   attr_reader :page, :per_page
 
   def initialize(params = {})
