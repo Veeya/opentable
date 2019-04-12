@@ -2,13 +2,12 @@
 
 <p>This project provides an unofficial json API interface to search OpenTable
 restaurant data. It eliminates the need to download, parse and import
-data from XLS file. Its an open-source project, hosted on <a href="https://github.com/sosedoff/opentable">Github</a>.</p>
+data from XLS file. Its an open-source project, hosted on <a href="https://github.com/veeya/opentable">Github</a>.</p>
 
 <h2 id="overview"><a href="#overview" class="anchor">Overview</a></h2>
 
 <ul>
-<li>API endpoint: <a href="http://opentable.herokuapp.com/api">http://opentable.herokuapp.com/api</a></li>
-<li>Secure API endpoint: <a href="https://opentable.herokuapp.com/api">https://opentable.herokuapp.com/api</a></li>
+<li>Secure API endpoint: <a href="https://opentable.veeya.me/api">https://opentable.veeya.me/api</a></li>
 <li>Response Format: JSON (JSONP is supported too)</li>
 <li>No authentication or API tokens required</li>
 <li>API is throttled with 1000 requests per hour per IP address</li>
@@ -16,12 +15,6 @@ data from XLS file. Its an open-source project, hosted on <a href="https://githu
 
 
 <h2 id="project-status"><a href="#project-status" class="anchor">Project Status</a></h2>
-
-<ul>
-<li><a href="https://travis-ci.org/sosedoff/opentable"><img src="http://img.shields.io/travis/sosedoff/opentable.svg?style=flat" alt="Build Status"></a></li>
-<li><a href="https://codeclimate.com/github/sosedoff/opentable"><img src="http://img.shields.io/codeclimate/github/sosedoff/opentable.svg?style=flat" alt="Code Climate"></a></li>
-<li><a href="https://coveralls.io/r/sosedoff/opentable?branch=master"><img src="https://img.shields.io/coveralls/sosedoff/opentable.svg?style=flat" alt="Coverage Status"></a></li>
-</ul>
 
 
 <h2 id="api-reference"><a href="#api-reference" class="anchor">API Reference</a></h2>
@@ -65,12 +58,11 @@ data from XLS file. Its an open-source project, hosted on <a href="https://githu
 <p>Parameters: (at least one required)</p>
 
 <ul>
-<li><code>price</code> - Price range for the restaurant. Values: 1-4.</li>
 <li><code>name</code> - Name of the restaurant</li>
-<li><code>address</code> - Address line. Should not contain state or city or zip.</li>
+<li><code>address</code> - Address line. Should not contain state or city or postal code.</li>
 <li><code>state</code> - State code (ex.: IL)</li>
 <li><code>city</code> - City name (ex.: Chicago)</li>
-<li><code>zip</code> - Zipcode (ex: 60601)</li>
+<li><code>postal_code</code> - Postal Code (ex: 60601)</li>
 <li><code>country</code> - Country code (ex: US)</li>
 <li><code>page</code> -  Page (default: 1)</li>
 <li><code>per_page</code> - Entries per Page, can be one of [5, 10, 15, 25, 50, 100] (default: 25)</li>
@@ -138,25 +130,6 @@ data from XLS file. Its an open-source project, hosted on <a href="https://githu
 
 <p>To generate a proper reservation link just ref parameter with your affiliate ID to reserve_url or mobile_reserve_url</p>
 
-<h2 id="consuming-api"><a href="#consuming-api" class="anchor">Consuming API</a></h2>
-
-<p>You can use simple client library i wrote — <a href="https://gist.github.com/2504683">https://gist.github.com/2504683</a></p>
-
-<p>Example:</p>
-
-<pre class="ruby">api = <span class="constant">OpenTable::Client</span>.new
-
-<span class="comment"># Find restaurants</span>
-resp = api.restaurants(<span class="symbol">:city</span> =&gt; <span class="string">"Chicago"</span>)
-
-<span class="comment"># Process response</span>
-resp[<span class="string">'count'</span>]       <span class="comment"># =&gt; records found</span>
-resp[<span class="string">'restaurants'</span>] <span class="comment"># =&gt; restaurant records</span>
-
-<span class="comment"># Fetch a single record</span>
-api.restaurant(<span class="number">81169</span>)</pre>
-
-
 <h2 id="disclaimer"><a href="#disclaimer" class="anchor">Disclaimer</a></h2>
 
 <ul>
@@ -166,18 +139,6 @@ employees.</li>
 to the original data</li>
 </ul>
 
-
-<h2 id="contact"><a href="#contact" class="anchor">Contact</a></h2>
-
-<ul>
-<li>Dan Sosedoff</li>
-<li><a href="mailto:dan.sosedoff@gmail.com">dan.sosedoff@gmail.com</a></li>
-<li><a href="http://twitter.com/sosedoff">http://twitter.com/sosedoff</a></li>
-<li><a href="https://github.com/sosedoff/opentable">https://github.com/sosedoff/opentable</a></li>
-</ul>
-
-
-<p>Please <strong>DO NOT</strong> contact author about services and products not related to this project.</p>
 
 <h2 id="license"><a href="#license" class="anchor">License</a></h2>
 
